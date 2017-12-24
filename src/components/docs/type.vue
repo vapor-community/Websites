@@ -12,6 +12,12 @@
             <span>Definition</span>
           </v-tooltip>
         </v-toolbar>
+        <v-container>
+          <div v-for="issue in openIssues" :key="issue.name">
+            <v-alert color="error" icon="warning" :value="issue.acknowledged" v-if="issue.severity == 5" v-html="description(issue)"></v-alert>
+            <v-alert color="warning" icon="priority-high" :value="issue.acknowledged" v-if="issue.severity == 4" v-html="description(issue)"></v-alert>
+          </div>
+        </v-container>
         <v-container fluid>
           <div v-for="docs in documentation">
             <p class="d-block" v-if="docs.type == 'text'" v-html="docs.content"></p>
@@ -47,6 +53,16 @@
             text: 0
           }
         },
+        openIssues: [
+          {
+            type: 'crash',
+            name: 'ByteBuffer Crash on Linux',
+            link: 'https://github.com/vapor/core/issues/51',
+            platforms: ['Linux', 'macOS', 'iOS'],
+            acknowledged: true,
+            severity: 5
+          }
+        ],
         documentation: [
           {
             type: "text",
@@ -67,6 +83,31 @@
             lang: 'leaf'
           }
         ]
+      }
+    },
+    methods: {
+      description(issue) {
+        let known = "have problems";
+
+        if(issue.type == 'crash') {
+          known = "crash";
+        }
+
+        let platforms = "";
+
+        for(let i = 0; i < issue.platforms.length; i++) {
+          if(i == 0) {
+            platforms += "on "
+          } else if(i == issue.platforms.length - 1) {
+            platforms += " and "
+          } else {
+            platforms += ", "
+          }
+
+          platforms += issue.platforms[i];
+        }
+
+        return `This ${this.type.type} is known to ${known} ${platforms}`;
       }
     }
   }

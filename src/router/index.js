@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Home from '../Home.vue';
 import VaporDocs from '../components/docs/overview.vue';
 import Documentation from '../components/docs/package.vue';
 import TypeDocs from '../components/docs/type.vue';
@@ -14,7 +15,7 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: VaporDocs
+      component: Home
     },
     {
       path: '/docs/',
