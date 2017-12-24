@@ -1,7 +1,7 @@
 <template>
   <v-container flat>
     <v-layout row>
-      <v-btn @click="copy()" absolute right icon :data-clipboard-text="code">
+      <v-btn class="codeToClipboard" :data-clipboard-text="code" ref="copyClipboard" absolute right icon>
         <v-tooltip v-model="tooltip" disabled bottom close-delay="450">
           <v-icon slot="activator">content_copy</v-icon>
           <span>Copied!</span>
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-  require('clipboard')
+  import Clipboard from 'clipboard';
 
   export default {
     props: {
@@ -22,17 +22,8 @@
     },
     data() {
       return {
-        tooltip: false
-      }
-    },
-    methods: {
-      copy() {
-        let self = this;
-        self.tooltip = true;
-
-        setTimeout(function() {
-          self.tooltip = false;
-        }, 3000)
+        tooltip: false,
+        clip: new Clipboard('.codeToClipboard')
       }
     }
   }
