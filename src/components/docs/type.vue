@@ -50,12 +50,16 @@
         documentation: [
           {
             type: "text",
-            content: "I love ByteBuffer!"
+            content: "I love ByteBuffer! Here's some swift code"
           },
           {
             type: "example",
-            content: "data.withByteBuffer { print(Array($0)) }",
+            content: "data.withByteBuffer { print(Array($0)) }\nlet app = Application()",
             lang: 'swift'
+          },
+          {
+            type: 'text',
+            content: 'Here is some leaf code'
           },
           {
             type: "example",
