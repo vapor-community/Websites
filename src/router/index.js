@@ -4,6 +4,7 @@ import VaporDocs from '../components/docs/overview.vue';
 import Documentation from '../components/docs/package.vue';
 import Package from '../components/package.vue';
 import PackageInfo from '../components/catalog/package-info.vue';
+import FAQ from '../components/faq.vue';
 
 Vue.use(Router)
 
@@ -11,7 +12,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'docs',
+      name: 'home',
       component: VaporDocs
     },
     {
@@ -20,7 +21,7 @@ export default new Router({
       component: VaporDocs
     },
     {
-      path: '/:organization/:package/',
+      path: '/packages/:organization/:package/',
       name: 'package-info',
       component: Package,
       children: [
@@ -30,11 +31,16 @@ export default new Router({
           component: Documentation
         },
         {
-          name: 'package',
-          path: 'package',
+          name: '/',
+          path: 'package-home',
           component: PackageInfo
         }
       ]
     },
+    {
+      path: '/faq/:article',
+      name: 'faq',
+      component: FAQ
+    }
   ]
 })
