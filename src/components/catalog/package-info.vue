@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title primary-title>
-      <h3 class="headline mb-0"><a class="headline" :href="githubOrganization">{{organization}}</a> / <a :href="githubRepo">{{package}}</a></h3>
+      <h3 class="headline mb-0"><a class="headline" target="_blank" :href="githubOrganization">{{organization}}</a> / <a target="_blank" :href="githubRepo">{{package}}</a></h3>
       <v-spacer></v-spacer>
 
       <v-chip v-if="hot" color="red" text-color="white">

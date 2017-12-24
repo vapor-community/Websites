@@ -20,11 +20,11 @@
         <span>Docs</span>
         <v-icon>school</v-icon>
       </v-btn>
-      <v-btn flat :href="github" color="teal">
+      <v-btn flat target="_blank" :href="github" color="teal">
         <span>Source</span>
         <v-icon>code</v-icon>
       </v-btn>
-      <v-btn flat :href="github + 'issues/'" color="teal">
+      <v-btn flat target="_blank" :href="github + 'issues/'" color="teal">
         <span>Bugs</span>
         <v-icon>bug_report</v-icon>
       </v-btn>

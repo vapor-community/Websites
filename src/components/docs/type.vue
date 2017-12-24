@@ -6,7 +6,7 @@
           <v-toolbar-title>{{type.name}}</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-tooltip bottom>
-            <v-btn icon v-if="metadata.github" :href="metadata.github" slot="activator">
+            <v-btn icon v-if="metadata.github" target="_blank" :href="metadata.github" slot="activator">
               <v-icon>code</v-icon>
             </v-btn>
             <span>Definition</span>
@@ -14,8 +14,11 @@
         </v-toolbar>
         <v-container>
           <div v-for="issue in openIssues" :key="issue.name">
-            <v-alert color="error" icon="warning" :value="issue.acknowledged" v-if="issue.severity == 5" v-html="description(issue)"></v-alert>
-            <v-alert color="warning" icon="priority-high" :value="issue.acknowledged" v-if="issue.severity == 4" v-html="description(issue)"></v-alert>
+            <v-alert color="error" :value="issue.acknowledged" v-if="issue.severity == 5">
+              <v-btn ::href="issue.link" icon dark><v-icon>open_in_new</v-icon></v-btn>
+              {{description(issue)}}
+            </v-alert>
+            <v-alert color="warning" :value="issue.acknowledged" v-if="issue.severity == 4" v-html="description(issue)"></v-alert>
           </div>
         </v-container>
         <v-container fluid>
@@ -60,7 +63,8 @@
             link: 'https://github.com/vapor/core/issues/51',
             platforms: ['Linux', 'macOS', 'iOS'],
             acknowledged: true,
-            severity: 5
+            since: '3.2.1-alpha.1',
+            severity: 5,
           }
         ],
         documentation: [
@@ -107,7 +111,13 @@
           platforms += issue.platforms[i];
         }
 
-        return `This ${this.type.type} is known to ${known} ${platforms}`;
+        let affected = "";
+
+        if(issue.since) {
+          affected = `since ${issue.since}`;
+        }
+
+        return `This ${this.type.type} is known to ${known} ${platforms} ${affected}`;
       }
     }
   }

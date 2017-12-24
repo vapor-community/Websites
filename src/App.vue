@@ -4,7 +4,7 @@
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-and-down">
-        <v-btn flat :key="link.name" v-for="link in links" :href="link.link">{{link.name}}</v-btn>
+        <v-btn flat :key="link.name" v-for="link in links" target="_blank" :href="link.link">{{link.name}}</v-btn>
       </v-toolbar-items>
       <v-badge v-if="profile" overlap :color="urgency" v-model="profile.notifications.length > 0">
         <v-icon dark slot="badge">notifications</v-icon>
