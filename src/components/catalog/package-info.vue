@@ -23,15 +23,27 @@
           Community <v-icon right>group</v-icon>
         </v-btn>
 
-        <v-btn success round small outline to="/faq/reactive" v-if="reactive">
-          Reactive <v-icon right>fast_forward</v-icon>
-        </v-btn>
-        <v-btn error round small outline to="/faq/reactive" v-else>
-          Blocking <v-icon right>block</v-icon>
-        </v-btn>
+        <v-tooltip bottom v-if="reactive">
+          <v-btn success round small outline to="/faq/reactive" slot="activator">
+            Reactive <v-icon right>fast_forward</v-icon>
+          </v-btn>
+          <span>This library uses the reactive design pattern</span>
+        </v-tooltip>
+        <v-tooltip bottom v-if="!reactive && async">
+          <v-btn primary round small outline to="/faq/reactive" slot="activator">
+            Async <v-icon right>fast_forward</v-icon>
+          </v-btn>
+          <span>This library is asynchronous but not reactive</span>
+        </v-tooltip>
+        <v-tooltip bottom v-if="!reactive & !async">
+          <v-btn error round small outline to="/faq/reactive" slot="activator">
+            Blocking <v-icon right>block</v-icon>
+          </v-btn>
+          <span>This library is blocking</span>
+        </v-tooltip>
 
         <v-btn success round small outline to="/faq/services" v-if="reactive">
-          Service <v-icon right>extension</v-icon>
+          Services <v-icon right>extension</v-icon>
         </v-btn>
       </v-layout>
 
@@ -62,6 +74,7 @@
         package: this.$route.params.package,
         stars: 12068,
         reactive: true,
+        async: true,
         categories: [
           {
             name: 'utility',

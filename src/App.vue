@@ -3,8 +3,8 @@
     <v-toolbar fixed app>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn flat :key="link.name" v-for="link in links" :href="link.link" slot="activator">{{link.name}}</v-btn>
+      <v-toolbar-items class="hidden-xs-and-down">
+        <v-btn flat :key="link.name" v-for="link in links" :href="link.link">{{link.name}}</v-btn>
       </v-toolbar-items>
       <v-badge v-if="profile" overlap :color="urgency" v-model="profile.notifications.length > 0">
         <v-icon dark slot="badge">notifications</v-icon>

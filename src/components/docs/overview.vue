@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-layout row wrap>
-      <v-flex v-for="project in projects" :key="project.name" xs3>
+      <v-flex v-for="project in projects" :key="project.name" md3>
         <v-container>
           <v-card>
             <v-card-media
