@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import VaporDocs from '../components/docs/overview.vue';
-import VaporPackageDocs from '../components/docs/package.vue';
-import CatalogPackage from '../components/catalog/package.vue';
+import Documentation from '../components/docs/package.vue';
+import Package from '../components/package.vue';
+import PackageInfo from '../components/catalog/package-info.vue';
 
 Vue.use(Router)
 
@@ -19,14 +20,21 @@ export default new Router({
       component: VaporDocs
     },
     {
-      path: '/package/:organization/:package/',
+      path: '/:organization/:package/',
       name: 'package-info',
-      component: CatalogPackage
+      component: Package,
+      children: [
+        {
+          name: 'docs',
+          path: 'docs',
+          component: Documentation
+        },
+        {
+          name: 'package',
+          path: 'package',
+          component: PackageInfo
+        }
+      ]
     },
-    {
-      path: '/docs/:organization/:package/',
-      name: 'package-docs',
-      component: VaporPackageDocs
-    }
   ]
 })

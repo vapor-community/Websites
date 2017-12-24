@@ -16,8 +16,8 @@
               </div>
             </v-card-title>
             <v-card-actions>
-              <v-btn flat primary :to="'/package/' + project.organization + '/' + project.name">Add</v-btn>
-              <v-btn flat secondary :to="'/docs/' + project.organization + '/' + project.name">Docs</v-btn>
+              <v-btn flat primary :to="'/' + project.organization + '/' + project.name + '/package'">Add</v-btn>
+              <v-btn flat secondary :to="'/' + project.organization + '/' + project.name + '/docs'">Docs</v-btn>
             </v-card-actions>
           </v-card>
         </v-container>
