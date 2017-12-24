@@ -3,12 +3,23 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.css'
+import hljs from 'highlight.js'
 
 import App from './App'
 import router from './router'
 
 Vue.use(Vuetify)
 Vue.config.productionTip = false
+
+Vue.directive('highlight', {
+  deep: true,
+  bind: function (el, binding) {
+    hljs.highlightBlock(el)
+  },
+  componentUpdated: function (el, binding) {
+    hljs.highlightBlock(el)
+  }
+})
 
 /* eslint-disable no-new */
 new Vue({
