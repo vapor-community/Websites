@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-layout row wrap>
-      <v-flex v-for="project in projects" :key="project.name" md3>
+      <v-flex v-for="project in projects" :key="project.name" md4>
         <v-container>
           <v-card>
             <v-card-media
@@ -16,8 +16,8 @@
               </div>
             </v-card-title>
             <v-card-actions>
-              <v-btn flat primary :to="'/' + project.organization + '/' + project.name + '/package'">Add</v-btn>
-              <v-btn flat secondary :to="'/' + project.organization + '/' + project.name + '/docs'">Docs</v-btn>
+              <v-btn flat primary :to="project.organization + '/' + project.name">Add</v-btn>
+              <v-btn flat secondary :to="project.organization + '/' + project.name + '/docs'">Docs</v-btn>
             </v-card-actions>
           </v-card>
         </v-container>

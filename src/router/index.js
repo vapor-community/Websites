@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../Home.vue';
-import VaporDocs from '../components/docs/overview.vue';
-import Documentation from '../components/docs/package.vue';
+import VaporDocs from '../components/catalog/overview.vue';
+import PackageDocsOverview from '../components/docs/package.vue';
 import TypeDocs from '../components/docs/type.vue';
-import Package from '../components/package.vue';
+import AllPackages from '../components/catalog/overview.vue';
 import PackageInfo from '../components/catalog/package-info.vue';
 import FAQ from '../components/faq.vue';
 
@@ -13,36 +13,34 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      name: 'Home',
       path: '/',
-      name: 'home',
       component: Home
     },
     {
+      name: 'Documentation',
       path: '/docs/',
-      name: 'docs',
       component: VaporDocs
     },
     {
-      path: '/docs/types/:type',
-      name: 'type-docs',
-      component: TypeDocs
+      name: 'Package Catalog',
+      path: '/catalog',
+      component: AllPackages,
     },
     {
-      path: '/packages/:organization/:package/',
-      name: 'package-info',
-      component: Package,
-      children: [
-        {
-          name: 'docs',
-          path: 'docs',
-          component: Documentation
-        },
-        {
-          name: '/',
-          path: 'package-home',
-          component: PackageInfo
-        }
-      ]
+      name: 'Package Home',
+      path: '/catalog/:organization/:package/',
+      component: PackageInfo
+    },
+    {
+      name: 'Package Docs',
+      path: '/catalog/:organization/:package/docs',
+      component: PackageDocsOverview,
+    },
+    {
+      name: 'Type Docs',
+      path: '/catalog/:organization/:package/docs/types/:type',
+      component: TypeDocs
     },
     {
       path: '/faq/:article',

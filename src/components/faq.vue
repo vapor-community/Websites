@@ -23,7 +23,7 @@
           <h3 id="downstream">Downstream</h3>
           <p>You <em>must not</em> feed more data to downstream than was requested.</p>
           <h3 id="blocking">Blocking</h3>
-          <p>You <em>must not</em> block within a stream using <doc-link type="sleep"></doc-link> or blocking sockets.</p>
+          <p>You <em>must not</em> block within a stream using <doc-link type="sleep"></doc-link> or blocking sockets.
         </p>
       </v-flex>
     </v-container>
