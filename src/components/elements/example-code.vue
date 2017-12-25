@@ -1,10 +1,10 @@
 <template>
   <v-container flat>
     <v-layout row>
-      <v-btn class="codeToClipboard" :data-clipboard-text="code" ref="copyClipboard" absolute right icon>
-        <v-tooltip v-model="tooltip" disabled bottom close-delay="450">
+      <v-btn class="codeToClipboard" @click="changeMessage" :data-clipboard-text="code" ref="copyClipboard" absolute right icon>
+        <v-tooltip bottom>
           <v-icon slot="activator">content_copy</v-icon>
-          <span>Copied!</span>
+          <span v-html="copyText"></span>
         </v-tooltip>
       </v-btn>
       <pre v-highlight :class="lang">{{code}}</pre>
@@ -22,8 +22,19 @@
     },
     data() {
       return {
-        tooltip: false,
-        clip: new Clipboard('.codeToClipboard')
+        clip: new Clipboard('.codeToClipboard'),
+        copyText: 'Copy this example'
+      }
+    },
+    methods: {
+      changeMessage() {
+        let self = this;
+        let oldText = self.copyText;
+        this.copyText = 'Copied!';
+
+        setTimeout(function () {
+          self.copyText = oldText
+        }, 3000)
       }
     }
   }

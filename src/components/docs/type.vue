@@ -3,7 +3,7 @@
     <v-container>
       <v-card>
         <v-toolbar dark>
-          <v-toolbar-title>{{type.name}}</v-toolbar-title>
+          <v-toolbar-title>{{type.name}} ({{type.type}})</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-tooltip bottom>
             <v-btn icon v-if="metadata.github" target="_blank" :href="metadata.github" slot="activator">
@@ -15,12 +15,17 @@
         <v-container>
           <div v-for="issue in openIssues" :key="issue.name">
             <v-alert color="error" :value="issue.acknowledged" v-if="issue.severity == 5">
-              <v-btn ::href="issue.link" icon dark><v-icon>open_in_new</v-icon></v-btn>
+              <v-btn target="_blank" :href="issue.link" icon dark><v-icon>open_in_new</v-icon></v-btn>
               {{description(issue)}}
             </v-alert>
             <v-alert color="warning" :value="issue.acknowledged" v-if="issue.severity == 4" v-html="description(issue)"></v-alert>
+            <br v-if="issue.acknowledged" />
           </div>
+          <summary>
+            <span v-if="type.type == 'typealias'" class="subheading">Alternative for <code>{{type.typealias}}</code></span>
+          </summary>
         </v-container>
+        <v-divider></v-divider>
         <v-container fluid>
           <div v-for="docs in documentation">
             <p class="d-block" v-if="docs.type == 'text'" v-html="docs.content"></p>
@@ -50,6 +55,7 @@
         type: {
           name: this.$route.params.type,
           type: "typealias",
+          typealias: 'UnsafeBufferPointer<UInt8>',
           documentation: {
             quality: 0,
             examples: 0,
