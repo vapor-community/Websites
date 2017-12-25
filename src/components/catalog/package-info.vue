@@ -8,7 +8,7 @@
             <v-spacer></v-spacer>
 
             <v-chip v-if="hot" color="red" text-color="white">
-              Popular <v-icon right>whatshot</v-icon>
+              Popular <v-icon right>trending_up</v-icon>
             </v-chip>
             <v-chip color="orange" text-color="white">
               {{stars}} <v-icon right>star</v-icon>
